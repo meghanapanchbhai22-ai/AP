@@ -1,0 +1,67 @@
+ACTIVITY XML JAVA
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ListView
+            android:id="@+id/lst"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+MAINACTIVITY JAVA
+
+import android.widget.AutoCompleteTextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.program4.R;
+
+public class MainActivity extends AppCompatActivity {
+    AutoCompleteTextView actv;
+    String[] courses = {
+            "BCA",
+            "BBA",
+            "B.Com",
+            "B.Sc",
+            "BA",
+            "MCA",
+            "MBA",
+            "M.Com",
+            "M.Sc"
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        actv = findViewById(R.id.actvUi);
+
+        // Adapter connects the course data to AutoCompleteTextView
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_dropdown_item_1line,
+                courses
+        );
+
+        // Suggestions appear after typing 1 character
+        actv.setThreshold(1);
+
+        // Attach adapter to AutoCompleteTextView
+        actv.setAdapter(adapter);
+    }
+}
